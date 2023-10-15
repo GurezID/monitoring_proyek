@@ -29,7 +29,7 @@
                             <div class="col-lg">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h5 class="h1 text-gray-900 mb-4 -mt-4">WELCOM</h5>
+                                        <h5 class="h1 text-gray-900 mb-4 -mt-4">Sistem informasi monitoring peoyek</h5>
                                         @if (session()->has('pesan_buat_akun'))
                                             <div class="alert alert-success">{{ session('pesan_buat_akun') }}</div>
                                         @endif
