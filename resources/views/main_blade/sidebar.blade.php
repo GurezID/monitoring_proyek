@@ -29,20 +29,29 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                @can('superadmin')
-                    <li class="nav-item {{ Request::is('superadmin') ? 'menu-open' : '' }}">
+
+                @can('Administrator')
+                    <li class="nav-item {{ Request::is('administrator') ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link {{ Request::is('superadmin') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Super Admin
+                                Administrator
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/superadmin" class="nav-link {{ Request::is('superadmin') ? 'active' : '' }}">
+                                <a href="" class="nav-link {{ Request::is('superadmin') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dasboard</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/administrator" class="nav-link {{ Request::is('administrator*') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Anggota</p>
                                 </a>
                             </li>
                         </ul>
@@ -51,7 +60,24 @@
                         <a href="#" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Admin
+                                Pengawas
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/admin" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Sub Dasboard</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item {{ Request::is('admin') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Manajer Proyek
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -65,13 +91,51 @@
                         </ul>
                     </li>
                 @endcan
-                
-                @can('admin')
+
+                @can('Pengawas')
+                <li class="nav-item {{ Request::is('admin') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Pengawas
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/admin" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sub Dasboard</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item {{ Request::is('admin') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Manajer Proyek
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/admin" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sub Dasboard</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endcan
+
+
+                @can('Manajer_Proyek')
                     <li class="nav-item {{ Request::is('admin') ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Admin
+                                Manajer Proyek
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -90,7 +154,7 @@
                     <a href="#" class="nav-link {{ Request::is('/') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            User
+                            Client
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>

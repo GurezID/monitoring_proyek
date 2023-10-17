@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,8 @@ use App\Http\Controllers\AuthController;
 Route::resource('/auth', AuthController::class);
 Route::post('/auth/login', [AuthController::class, 'login'])->name('login.auth');
 Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout.auth');
+
+Route::resource('/administrator', UserController::class);
 
 Route::get('/', function () {
     return view('welcome');
