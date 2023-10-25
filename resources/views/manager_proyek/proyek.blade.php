@@ -9,17 +9,15 @@
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">ID.</th>
-                                    <th scope="col">Profile</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">User Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Role</th>
-                                    <th scope="col">Aksi</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Proyek</th>
+                                    <th scope="col">Client</th>
+                                    <th scope="col">Pengawas</th>
+                                    <th scope="col">Time</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                {{-- @foreach ($users as $user)
                                     <tr>
                                         <th scope="row">{{ $user->id }}</th>
                                         <td>
@@ -68,33 +66,7 @@
                                         </td>
                                     </tr>
 
-                                    <div class="modal fade" id="example{{ $user->username }}" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Image View</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <div class="image text-center">
-                                                    @if ($user->profil === null)
-                                                        <img src="/dist/img/user2-160x160.jpg" class="elevation-3 mt-2 mb-2"
-                                                            alt="User Image">
-                                                    @else
-                                                        <img src="/storage/{{ $user->profil }}"
-                                                            class="elevation-3 mt-2 mb-2" alt="User Image">
-                                                    @endif
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>
@@ -102,7 +74,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -115,7 +86,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/administrator/{{ $user->id }}" method="POST">
+                <form action="/administrator/" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="modal-body">

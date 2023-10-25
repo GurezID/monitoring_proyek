@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdministratorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,11 @@ Route::resource('/auth', AuthController::class);
 Route::post('/auth/login', [AuthController::class, 'login'])->name('login.auth');
 Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout.auth');
 
-Route::resource('/administrator', UserController::class);
+Route::resource('/administrator', AdministratorController::class);
+// Route::resource('/proyek', ManagerProyekController::class);
+
+Route::resource('/user', UserController::class);
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,18 +33,27 @@ Route::get('/', function () {
 
 Route::get('/', function () {
     return view('welcome', [
+        "title" => "User Template",
         "template" => "User Template"
     ]);
 })->middleware('auth');;
 
 Route::get('/superadmin', function () {
     return view('welcome', [
+        "title" => "Super Admin Template",
         "template" => "Super Admin Template"
     ]);
 })->middleware('superadmin');
 
 Route::get('/admin', function () {
     return view('welcome', [
+        "title" => "Admin Template",
         "template" => "Admin Template"
+    ]);
+});
+Route::get('/proyek', function () {
+    return view('manager_proyek.proyek', [
+        "title" => "Proyek",
+        "template" => "Proyek"
     ]);
 });

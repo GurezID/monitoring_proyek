@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,10 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('administrator.user_table', [
-            "title" => "Tabel Anggota",
-            "users" => User::get()
-        ]);
+        //
     }
 
     /**
@@ -47,26 +45,42 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('user.profile.edit', [
+            "title" => "Edit Profile",
+            "user" => $user
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::find($id);
-        $user->update([
-            'role' => $request->role,
+        $request->validate([
+            'name' => 'required|max:255',
+            'username' => 'required|alpha_dash|min:3|max:255',
+            'email' => 'required|max:124',
+            'profil' => 'image|max:1024',
         ]);
 
-        toastr()->success('Successfully Update', 'Sukses');
+        if ($request->file('profil')) {
+            if ($user->profil && $user->profil === 'dafult.jpg') {
+            } else {
+                if ($user->profil) {
+                    Storage::delete($user->profil); 
+                }
+            }
+            $imgPath = $request->file('profil')->store('img/profil');
+            $user->update(['profil' => $imgPath]);
+        }
+       
+        $user->update([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+        ]);
+
+        toastr()->success('Successfully Update Profile', 'Sukses');
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(User $user)
     {
         //
