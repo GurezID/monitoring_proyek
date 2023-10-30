@@ -38,12 +38,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
+                                        <label>Email address</label>
                                         <input type="email" class="form-control" name="email" id="email"
                                             value="{{ auth()->user()->email }}" readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Name</label>
+                                        <label>Name</label>
                                         <input type="text" class="form-control" placeholder="Enter Name" name="name"
                                             id="name" value="{{ old('name', auth()->user()->name) }}">
                                         @error('name')
@@ -53,11 +53,22 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">User Name</label>
-                                        <input type="text" class="form-control" placeholder="Enter User Name"
+                                        <label>User Name</label>
+                                        <input type="text" class="form-control" placeholder="Masukan User Name"
                                             name="username" id="username"
                                             value="{{ old('username', auth()->user()->username) }}">
                                         @error('username')
+                                            <div class="text-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Perusahaan</label>
+                                        <input type="text" class="form-control" placeholder="Masukan Perusahaan"
+                                            name="perusahaan" id="perusahaan"
+                                            value="{{ old('perusahaan', auth()->user()->perusahaan) }}">
+                                        @error('perusahaan')
                                             <div class="text-danger" role="alert">
                                                 {{ $message }}
                                             </div>

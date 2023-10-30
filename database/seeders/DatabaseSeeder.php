@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Models\Proyek;
+use App\Models\Rencana;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,8 +17,8 @@ class DatabaseSeeder extends Seeder
     {
         User::create([
             'name' => 'Gurez ID',
-            'username' => 'Gurez',
-            'email' => 'Sokini74@gmail.com',
+            'username' => 'Restu',
+            'email' => 'Restu@gmail.com',
             'profil' => null,
             'password' => bcrypt('123'),
             'role' => 1
@@ -27,7 +29,41 @@ class DatabaseSeeder extends Seeder
             'email' => 'Naniyakuza@gmail.com',
             'profil' => null,
             'password' => bcrypt('123'),
+            'role' => 2
+        ]);
+        User::create([
+            'name' => 'zulfames',
+            'username' => 'zulfame',
+            'email' => 'zulfadlirizal@gmail.com',
+            'profil' => null,
+            'password' => bcrypt('123'),
+            'role' => 3
+        ]);
+        User::create([
+            'name' => 'Fajar Gumilar',
+            'username' => 'Fajar',
+            'email' => 'fajar45@gmail.com',
+            'profil' => null,
+            'password' => bcrypt('123'),
             'role' => 0
+        ]);
+        Proyek::create([
+            'klien' => 'proyek 1',
+            'name_proyek' => 'Fajar Gumilar',
+            'pengawas' => 'Analia rose',
+            'manager' => 'zulfames',
+            'time_str' => '2023-10-01 00:00:00',
+            'time_end' => '2023-10-01 00:00:00',
+            'is_str' => 0
+        ]);
+        Rencana::create([
+            'proyek_id' => 1,
+            'pekerjaan' => 'pekerjaan 1',
+            'alat' => 'Cangkul',
+            'time_str' => '2023-10-01 00:00:00',
+            'time_end' => '2023-10-05 00:00:00',
+            'status' => 0
         ]);
     }
 }
+

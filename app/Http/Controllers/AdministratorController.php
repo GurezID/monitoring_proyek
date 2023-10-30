@@ -19,8 +19,10 @@ class AdministratorController extends Controller
      */
     public function create()
     {
-        return view('administrator.user_table', [
+        return view('administrator.anggota.user_table', [
             "title" => "Tabel Anggota",
+            "link" => "/administrator/create",
+            "subTitle" => null,
             "users" => User::get()
         ]);
     }

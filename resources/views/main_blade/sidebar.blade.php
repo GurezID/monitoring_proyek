@@ -35,8 +35,8 @@
                 data-accordion="false">
 
                 @can('Administrator')
-                    <li class="nav-item {{ Request::is('administrator') ? 'menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ Request::is('superadmin') ? 'active' : '' }}">
+                    <li class="nav-item {{ Request::is('administrator/*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ Request::is('administrator/*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Administrator
@@ -54,9 +54,18 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="/administrator/create"
-                                    class="nav-link {{ Request::is('administrator*') ? 'active' : '' }}">
+                                    class="nav-link {{ Request::is('administrator/create') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Anggota</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/administrator/proyek/create"
+                                    class="nav-link {{ Request::is('administrator/proyek/*') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Proyek</p>
                                 </a>
                             </li>
                         </ul>
@@ -78,8 +87,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item {{ Request::is('proyek*') ? 'menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ Request::is('proyek') ? 'active' : '' }}">
+                    <li class="nav-item {{ Request::is('manager/proyek*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ Request::is('manager/proyek*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Manajer Proyek
@@ -88,7 +97,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/proyek" class="nav-link {{ Request::is('proyek') ? 'active' : '' }}">
+                                <a href="/manager/proyek" class="nav-link {{ Request::is('manager/proyek*') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Proyek</p>
                                 </a>
@@ -136,8 +145,8 @@
 
 
                 @can('Manajer_Proyek')
-                    <li class="nav-item {{ Request::is('admin') ? 'menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                    <li class="nav-item {{ Request::is('manager/proyek*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ Request::is('manager/proyek*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Manajer Proyek
@@ -146,7 +155,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/admin" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                                <a href="/manager/proyek" class="nav-link {{ Request::is('manager/proyek*') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Proyek</p>
                                 </a>
@@ -155,8 +164,8 @@
                     </li>
                 @endcan
 
-                <li class="nav-item {{ Request::is('/') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ Request::is('/') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('user') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ Request::is('user') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Client
@@ -165,7 +174,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item ">
-                            <a href="/" class="nav-link {{ Request::is('/') ? 'active' : '' }}">
+                            <a href="/user" class="nav-link {{ Request::is('user') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Home</p>
                             </a>

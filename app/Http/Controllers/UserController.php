@@ -13,7 +13,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.profile.index', [
+            "title" => "Profile",
+            "link" => "/user",
+            "subTitle" => null,
+        ]);
     }
 
     /**
@@ -47,16 +51,19 @@ class UserController extends Controller
     {
         return view('user.profile.edit', [
             "title" => "Edit Profile",
+            "link" => "/user/1/edit",
+            "subTitle" => null,
             "user" => $user
         ]);
     }
 
     public function update(Request $request, User $user)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|max:255',
             'username' => 'required|alpha_dash|min:3|max:255',
             'email' => 'required|max:124',
+            'perusahaan' => 'required|max:124',
             'profil' => 'image|max:1024',
         ]);
 
@@ -64,18 +71,14 @@ class UserController extends Controller
             if ($user->profil && $user->profil === 'dafult.jpg') {
             } else {
                 if ($user->profil) {
-                    Storage::delete($user->profil); 
+                    Storage::delete($user->profil);
                 }
             }
             $imgPath = $request->file('profil')->store('img/profil');
             $user->update(['profil' => $imgPath]);
         }
-       
-        $user->update([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-        ]);
+
+        $user->update($data);
 
         toastr()->success('Successfully Update Profile', 'Sukses');
         return redirect()->back();
