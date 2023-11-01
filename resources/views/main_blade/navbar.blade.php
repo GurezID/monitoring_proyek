@@ -4,14 +4,6 @@
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
-
-        <li class="d-none d-sm-inline-block">
-            <a href="{{ $link }}" class="nav-link">{{ $title }}</a>
-        </li>
-        @if ($subTitle !== null)
-            <h5 class="mt-2">/</h5>
-            <li class="breadcrumb-item nav-link active" aria-current="page">{{ $subTitle }}</li>
-        @endif
     </ul>
 
     <ul class="navbar-nav ml-auto">

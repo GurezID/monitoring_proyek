@@ -12,6 +12,7 @@ class AdministratorController extends Controller
      */
     public function index()
     {
+        //
     }
 
     /**
@@ -48,6 +49,7 @@ class AdministratorController extends Controller
      */
     public function edit(User $user)
     {
+        //
     }
 
     /**

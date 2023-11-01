@@ -1,5 +1,5 @@
 <!-- Modal Laporan -->
-<div class="modal fade bd-buat-insiden-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-buat-survei-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,7 +13,7 @@
                 <div class="modal-body">
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Nama Proyek" name="laporan_id" id="laporan_id" value="{{ $laporan->id }}" hidden>
+                        <input type="text" class="form-control" placeholder="Nama Proyek" name="proyek_id" id="proyek_id" value="{{ $proyek->id }}" hidden>
                     </div>
 
                     <div class="input-group mb-3">

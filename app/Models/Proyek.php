@@ -21,4 +21,12 @@ class Proyek extends Model
     {
         return $this->hasMany(Laporan::class);
     }
+    public function insiden()
+    {
+        return $this->hasMany(Insiden::class);
+    }
+    public function survei()
+    {
+        return $this->hasMany(Survei::class);
+    }
 }

@@ -25,12 +25,6 @@ class Laporan extends Model
         return $this->hasMany(Image::class);
     }
 
-    public function insiden()
-    {
-        return $this->hasMany(Insiden::class);
-    }
-    public function survei()
-    {
-        return $this->hasMany(Survei::class);
-    }
+    
+    
 }

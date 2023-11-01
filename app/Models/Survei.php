@@ -12,9 +12,9 @@ class Survei extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function laporan()
+    public function proyek()
     {
-        return $this->belongsTo(Laporan::class);
+        return $this->belongsTo(Proyek::class);
     }
 
     public function image()

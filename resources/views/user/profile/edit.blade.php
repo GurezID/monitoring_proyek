@@ -30,7 +30,7 @@
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <label for="profil"
-                                                class="btn h-6 w-6 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                                                class="btn h-6 w-20 rounded-full border border-slate-200 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:border-navy-500 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"> Upload
                                                 <input id="profil" name="profil" type="file"
                                                     class="pointer-events-none absolute inset-0 h-full w-full opacity-0"
                                                     onchange="viewImg('profil')" />

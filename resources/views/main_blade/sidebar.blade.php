@@ -9,9 +9,9 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 @if (auth()->user()->profil === null)
-                <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 @else
-                <img src="/storage/{{ auth()->user()->profil }}" class="img-circle elevation-2" alt="User Image">
+                    <img src="/storage/{{ auth()->user()->profil }}" class="img-circle elevation-2" alt="User Image">
                 @endif
             </div>
             <div class="info">
@@ -45,14 +45,6 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="" class="nav-link {{ Request::is('superadmin') ? 'active' : '' }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dasboard</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
                                 <a href="/administrator/create"
                                     class="nav-link {{ Request::is('administrator/create') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
@@ -62,16 +54,16 @@
                         </ul>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/administrator/proyek/create"
-                                    class="nav-link {{ Request::is('administrator/proyek/*') ? 'active' : '' }}">
+                                <a href="/administrator/proyek"
+                                    class="nav-link {{ Request::is('administrator/proyek*') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Proyek</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item {{ Request::is('admin') ? 'menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                    <li class="nav-item {{ Request::is('pengawas/*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ Request::is('pengawas/*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Pengawas
@@ -80,9 +72,10 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/admin" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                                <a href="/pengawas/proyek"
+                                    class="nav-link {{ Request::is('pengawas/proyek*') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Sub Dasboard</p>
+                                    <p>Proyek</p>
                                 </a>
                             </li>
                         </ul>
@@ -97,7 +90,8 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/manager/proyek" class="nav-link {{ Request::is('manager/proyek*') ? 'active' : '' }}">
+                                <a href="/manager/proyek"
+                                    class="nav-link {{ Request::is('manager/proyek*') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Proyek</p>
                                 </a>
@@ -107,8 +101,8 @@
                 @endcan
 
                 @can('Pengawas')
-                    <li class="nav-item {{ Request::is('admin') ? 'menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                    <li class="nav-item {{ Request::is('pengawas/*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ Request::is('pengawas/*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Pengawas
@@ -117,15 +111,16 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/admin" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                                <a href="/pengawas/proyek"
+                                    class="nav-link {{ Request::is('pengawas/proyek*') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Sub Dasboard</p>
+                                    <p>Proyek</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item {{ Request::is('admin') ? 'menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                    <li class="nav-item {{ Request::is('manager/proyek*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ Request::is('manager/proyek*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Manajer Proyek
@@ -134,9 +129,10 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/admin" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                                <a href="/manager/proyek"
+                                    class="nav-link {{ Request::is('manager/proyek*') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Sub Dasboard</p>
+                                    <p>Proyek</p>
                                 </a>
                             </li>
                         </ul>
@@ -155,7 +151,8 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/manager/proyek" class="nav-link {{ Request::is('manager/proyek*') ? 'active' : '' }}">
+                                <a href="/manager/proyek"
+                                    class="nav-link {{ Request::is('manager/proyek*') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Proyek</p>
                                 </a>

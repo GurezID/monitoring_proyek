@@ -13,9 +13,9 @@ class Insiden extends Model
 
     protected $guarded = ['id'];
 
-    public function laporan()
+    public function proyek()
     {
-        return $this->belongsTo(Laporan::class);
+        return $this->belongsTo(Proyek::class);
     }
 
     public function image()

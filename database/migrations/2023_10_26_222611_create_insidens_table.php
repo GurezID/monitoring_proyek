@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('insidens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('laporan_id');
+            $table->foreignId('proyek_id');
             $table->string('judul')->nullable();
             $table->text('detail');
             $table->timestamps();

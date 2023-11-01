@@ -48,8 +48,8 @@ class DatabaseSeeder extends Seeder
             'role' => 0
         ]);
         Proyek::create([
-            'klien' => 'proyek 1',
-            'name_proyek' => 'Fajar Gumilar',
+            'name_proyek' => 'proyek 1',
+            'klien' => 'Fajar Gumilar',
             'pengawas' => 'Analia rose',
             'manager' => 'zulfames',
             'time_str' => '2023-10-01 00:00:00',
