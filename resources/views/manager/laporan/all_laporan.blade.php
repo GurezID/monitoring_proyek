@@ -8,11 +8,13 @@
                 <div class="col-sm-12">
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="ml-2 font-weight-bold">LAPORAN KERJA</h5>
-
+                        @can('Pengawas') @else
                         <button type="button" class="btn btn-primary mb-1" data-toggle="modal"
                             data-target=".bd-example-modal-lg">
                             + BUAT LAPORAN
                         </button>
+                        @endcan
+
                     </div>
                     <table class="table">
                         <thead class="thead-dark">
@@ -23,8 +25,11 @@
                                 <th scope="col">INSIDEN</th>
                                 <th scope="col">WAKTU LAPORAN</th>
                                 <th scope="col">DETAIL</th>
-                                <th scope="col">EDIT</th>
-                                <th scope="col">HAPUS</th>
+                                @can('Pengawas')
+                                @else
+                                    <th scope="col">EDIT</th>
+                                    <th scope="col">HAPUS</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -38,8 +43,14 @@
                                     </th>
                                     <td>{{ $laporan->pekerjaan }}</td>
                                     <td>
+                                        @php
+                                            $insidenCount = 0;
+                                        @endphp
                                         @forelse ($proyek->survei as $survei)
                                             @if (Str::startsWith($survei->created_at, substr($laporan->created_at, 0, 10)))
+                                                @php
+                                                    $insidenCount++;
+                                                @endphp
                                                 <button type="button" class="btn btn-info mb-1" data-toggle="modal"
                                                     data-target="#survei{{ $laporan->id }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em"
@@ -48,21 +59,25 @@
                                                             d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM112 256H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
                                                     </svg>
                                                 </button>
-                                                <!-- Modal survei -->
-                                                <div class="modal fade" id="survei{{ $laporan->id }}" tabindex="-1"
-                                                    role="dialog" aria-labelledby="exampleModalLabel"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">SURVEI</h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-
+                                            @endif
+                                        @empty
+                                            Tidak ada
+                                        @endforelse
+                                        <!-- Modal survei -->
+                                        <div class="modal fade" id="survei{{ $laporan->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">SURVEI</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @forelse ($proyek->survei as $survei)
+                                                            @if (Str::startsWith($survei->created_at, substr($laporan->created_at, 0, 10)))
                                                                 <div class="card">
                                                                     <div
                                                                         class="card-header d-flex justify-content-between align-items-center">
@@ -87,24 +102,33 @@
                                                                             class="btn btn-primary mt-3">Selengkapnya</a>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
+                                                            @else
+                                                                Tidak ada
+                                                            @endif
+                                                        @empty
+                                                            Tidak ada
+                                                        @endforelse
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
-                                            @else
-                                                Tidak ada
-                                            @endif
-                                        @empty
-                                            Tidak ada
-                                        @endforelse
+                                            </div>
+                                        </div>
+
                                     </td>
                                     <td>
+                                        @php
+                                            $insidenCount = 0;
+                                        @endphp
+
                                         @forelse ($proyek->insiden as $insiden)
-                                            @if (Str::startsWith($insiden->created_at, substr($laporan->created_at, 0, 10)))
+                                            @if (Str::startsWith($insiden->created_at, substr($laporan->created_at, 0, 10)) && $insidenCount == 0)
+                                                @php
+                                                    $insidenCount++;
+                                                @endphp
+
                                                 <button type="button" class="btn btn-info mb-1" data-toggle="modal"
                                                     data-target="#a{{ $laporan->id }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em"
@@ -113,23 +137,26 @@
                                                             d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM112 256H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
                                                     </svg>
                                                 </button>
-
-                                                <!-- Modal Insiden -->
-                                                <div class="modal fade" id="a{{ $laporan->id }}" tabindex="-1"
-                                                    role="dialog" aria-labelledby="exampleModalLabel"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">INSIDEN
-                                                                </h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-
+                                            @endif
+                                        @empty
+                                            Tidak ada
+                                        @endforelse
+                                        <!-- Modal Insiden -->
+                                        <div class="modal fade" id="a{{ $laporan->id }}" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">INSIDEN
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @forelse ($proyek->insiden as $insiden)
+                                                            @if (Str::startsWith($insiden->created_at, substr($laporan->created_at, 0, 10)))
                                                                 <div class="card">
                                                                     <div
                                                                         class="card-header d-flex justify-content-between align-items-center">
@@ -138,40 +165,39 @@
                                                                             method="POST" class="ml-auto">
                                                                             @csrf
                                                                             @method('DELETE')
-                                                                            <button type="submit"
-                                                                                class="btn btn-danger text-white ml-auto">
-                                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                    height="1em" viewBox="0 0 448 512">
-                                                                                    <path
-                                                                                        d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" />
-                                                                                </svg>
-                                                                            </button>
+                                                                            @can('Pengawas')
+                                                                            @else
+                                                                                <button type="submit"
+                                                                                    class="btn btn-danger text-white ml-auto">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                        height="1em" viewBox="0 0 448 512">
+                                                                                        <path
+                                                                                            d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" />
+                                                                                    </svg>
+                                                                                </button>
+                                                                            @endcan
                                                                         </form>
                                                                     </div>
                                                                     <div class="card-body">
-                                                                        <h5 class="card-title">{{ $insiden->detail }}</h5>
+                                                                        <h5 class="card-title">{{ $insiden->detail }}
+                                                                        </h5>
                                                                         <br>
                                                                         <a
                                                                             href="/insiden/{{ $insiden->id }}/edit">Detailnya</a>
                                                                     </div>
                                                                 </div>
-
-                                                            </div>
-
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
-
-                                                            </div>
-                                                        </div>
+                                                            @endif
+                                                        @empty
+                                                            Tidak ada
+                                                        @endforelse
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
-                                            @else
-                                                Tidak ada
-                                            @endif
-                                        @empty
-                                            Tidak ada
-                                        @endforelse
+                                            </div>
+                                        </div>
                                     </td>
                                     <td>{{ $laporan->created_at }}</td>
                                     <td>
@@ -185,6 +211,7 @@
                                             </button>
                                         </a>
                                     </td>
+                                    @can('Pengawas') @else
                                     <td>
                                         <button type="button" class="btn btn-info text-white" data-toggle="modal"
                                             data-target=".bd-edit-laporan{{ $laporan->id }}-modal-lg">
@@ -208,6 +235,7 @@
                                             </button>
                                         </form>
                                     </td>
+                                    @endcan
                                 </tr>
                             @endforeach
                         </tbody>

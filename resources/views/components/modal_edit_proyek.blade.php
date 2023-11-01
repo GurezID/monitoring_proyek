@@ -85,7 +85,7 @@
 
                         <label class="bold ml-1 badge-info mb-0 text-prepend">s/d</label>
 
-                        <div class="input-group-prepend ml-1">
+                        <div class="input-group-prepend ml-auto">
                             <label class="input-group-text" for="endDate">Tgl Akhir:</label>
                         </div>
                         <input type="date" id="time_end" name="time_end" class="text-dark"

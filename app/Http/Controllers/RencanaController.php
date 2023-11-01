@@ -93,10 +93,22 @@ class RencanaController extends Controller
         toastr()->success('Berhasil Update Status', 'Sukses');
         return redirect()->back();
     }
+    public function fullupdate(UpdateRencanaRequest $request, Rencana $rencana)
+    {
+        $data = $request->validate([
+            'proyek_id' => 'required|numeric',
+            'pekerjaan' => 'required|max:255',
+            'alat' => 'required',
+            'time_str' => 'required',
+            'time_end' => 'required',
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
+        $rencana->update($data);
+
+        toastr()->success('Berhasil Update Rencana', 'Sukses');
+        return redirect()->back();
+    }
+
     public function destroy($id)
     {
         $rencana = Rencana::find($id);

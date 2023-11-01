@@ -41,6 +41,7 @@ Route::resource('/user', UserController::class);
 
 Route::resource('/proyek/detail', ProyekController::class);
 Route::resource('/rencana', RencanaController::class);
+Route::put('/rencana/full/update/{rencana}', [RencanaController::class, 'fullupdate']);
 Route::resource('/laporan', LaporanController::class);
 Route::resource('/insiden', InsidenController::class);
 Route::resource('/survei', SurveiController::class);

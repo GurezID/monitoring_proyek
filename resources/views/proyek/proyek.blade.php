@@ -191,15 +191,17 @@
                                         </td>
                                         <td>
                                             @if ($proyek->is_str === 0)
-                                                <form method="POST" action="/mulai/proyek/{{ $proyek->id }}">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <input type="text" name="is_str" id="is_str" value="1"
-                                                        hidden>
-                                                    <button type="submit" class="btn btn-secondary"
-                                                        data-toggle="tooltip" data-placement="top"
-                                                        title="Klik untuk mulai proyek">Mulai Proyek</button>
-                                                </form>
+                                                @can('Administrator')
+                                                    <form method="POST" action="/mulai/proyek/{{ $proyek->id }}">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="text" name="is_str" id="is_str" value="1"
+                                                            hidden>
+                                                        <button type="submit" class="btn btn-secondary"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Klik untuk mulai proyek">Mulai Proyek</button>
+                                                    </form>
+                                                @endcan
                                             @else
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-success dropdown-toggle"
@@ -211,11 +213,11 @@
                                                         <a class="dropdown-item"
                                                             href="/rencana/{{ $proyek->id }}">Rencana</a>
                                                         <a class="dropdown-item"
-                                                            href="/laporan/{{ $proyek->id }}">Laporan</a>
+                                                            href="/laporan/{{ $proyek->id }}" @can('Pengawas') hidden @endcan>Laporan</a>
                                                         <a class="dropdown-item"
-                                                            href="/insiden/{{ $proyek->id }}">Insiden</a>
+                                                            href="/insiden/{{ $proyek->id }}" @can('Pengawas') hidden @endcan>Insiden</a>
                                                         <a class="dropdown-item"
-                                                            href="/survei/{{ $proyek->id }}">Survei</a>
+                                                            href="/survei/{{ $proyek->id }}" @can('Manajer_Proyek') hidden @endcan>Survei</a>
                                                         @can('Administrator')
                                                             <div class="dropdown-divider"></div>
                                                             <form method="POST" action="/mulai/proyek/{{ $proyek->id }}"
